@@ -17,7 +17,7 @@ export default class ListName extends Component {
   render() {
     const { list, openList, navigator, addItem, toggleCompleted } = this.props
 
-    const navigatorProps = {
+    const goToViewList = {
       component: ViewList,
       title: list.name,
       passProps: {
@@ -30,7 +30,7 @@ export default class ListName extends Component {
     const buttonProps = {
       backgroundColor: MKColor.BlueGrey,
       rippleLayerColor: MKColor.Lime,
-      onPress: () => openList(navigatorProps)
+      onPress: () => openList(goToViewList)
     }
 
     const countLabel = list.items.length !== 1 ? 'items' : 'item'

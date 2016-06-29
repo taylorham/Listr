@@ -17,14 +17,12 @@ export default class ViewList extends Component {
     console.log('ViewList', dataSource)
 
     return (
-      <View>
-        <ListView
-          dataSource={dataSource}
-          renderRow={item =>
-            <ListItem item={item} />
-          }
-          style={styles.listView} />
-      </View>
+      <ListView
+        dataSource={dataSource}
+        renderRow={item =>
+          <ListItem item={item} />
+        }
+        style={styles.listView} />
     )
   }
 }
