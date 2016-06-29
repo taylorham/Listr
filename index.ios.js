@@ -11,7 +11,7 @@ import Main from './application/components/Main'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111'
+    backgroundColor: '#AAAAF6'
   }
 })
 

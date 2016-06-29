@@ -7,6 +7,9 @@ import {
   TouchableHighlight,
   ActivityIndicatorIOS
 } from 'react-native'
+import {
+  MKColor
+} from 'react-native-material-kit'
 import helpers from '../helpers/helpers'
 import styles from '../styles/styles'
 import ListName from './ListName'

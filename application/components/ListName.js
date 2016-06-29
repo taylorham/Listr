@@ -6,6 +6,10 @@ import {
   TouchableHighlight,
   TouchableNativeFeedback
 } from 'react-native'
+import {
+  MKButton,
+  MKColor
+} from 'react-native-material-kit'
 import styles from '../styles/styles'
 
 export default class ListName extends Component {
@@ -16,20 +20,28 @@ export default class ListName extends Component {
     console.log(list, index, openList)
     console.log(list.name)
 
+    const coloredButtonProps = {
+      backgroundColor: MKColor.BlueGrey,
+      rippleLayerColor: MKColor.Lime,
+      onPress: () => console.log('button clicked')
+    }
+
+    const buttonTextProps = {
+      pointerEvents: 'none'
+    }
+
+    let countLabel = list.items.length !== 1 ? 'items' : 'item'
+
     return (
       <View>
-        <TouchableElement
-          style={styles.button}
-          onPress={() => openList(index)}>
-            <View>
-              <Text style={styles.listTitle}>
-                {list.name}
-              </Text>
-              <Text style={styles.listCount}>
-                {list.items.length}
-              </Text>
-            </View>
-        </TouchableElement>
+        <MKButton {...coloredButtonProps} style={styles.button}>
+          <Text pointerEvents="none" style={styles.listTitle}>
+            {list.name}
+          </Text>
+          <Text pointerEvents="none" style={styles.listCount}>
+            {`${list.items.length} ${countLabel}`}
+          </Text>
+        </MKButton>
       </View>
     )
   }

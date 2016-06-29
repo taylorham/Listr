@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { MKColor } from 'react-native-material-kit'
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -15,36 +16,40 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
   },
+  listView: {
+    backgroundColor: MKColor.LightBlue
+  },
   listTitle: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 8,
-    color: 'black'
+    alignSelf: 'flex-start',
+    color: 'white',
+    fontWeight: 'bold'
   },
   listCount: {
-
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
+    marginTop: -15,
+    alignSelf: 'flex-end',
+    color: 'white',
+    fontWeight: 'bold'
   },
   button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingRight: 15,
+    paddingLeft: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: MKColor.Grey
+  },
+  // button: {
+  //   height: 45,
+  //   flexDirection: 'row',
+  //   backgroundColor: 'white',
+  //   borderColor: 'white',
+  //   borderWidth: 1,
+  //   borderRadius: 8,
+  //   marginBottom: 10,
+  //   marginTop: 10,
+  //   alignSelf: 'stretch',
+  //   justifyContent: 'center'
+  // }
 })
 
 export default styles
