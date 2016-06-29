@@ -5,7 +5,28 @@ const helpers = {
       lists.push({
         id: index,
         name: name,
-        items: [],
+        items: [
+          {
+            name: 'zeroth',
+            completed: false,
+          },
+          {
+            name: 'first',
+            completed: false,
+          },
+          {
+            name: 'second',
+            completed: true
+          },
+          {
+            name: 'third',
+            completed: false
+          },
+          {
+            name: 'FUCK',
+            completed: false
+          }
+        ],
         isLoading: false,
         error: false
       })

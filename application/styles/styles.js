@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#488BEC'
   },
+  container: {
+    flex: 1,
+    backgroundColor: '#AAAAF6'
+  },
   title: {
     marginBottom: 20,
     fontSize: 25,
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   listCount: {
-    marginTop: -15,
+    marginTop: -17,
     alignSelf: 'flex-end',
     color: 'white',
     fontWeight: 'bold'

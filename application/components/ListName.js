@@ -11,30 +11,33 @@ import {
   MKColor
 } from 'react-native-material-kit'
 import styles from '../styles/styles'
+import ViewList from './ViewList'
 
 export default class ListName extends Component {
   render() {
-    const { list, index, openList } = this.props
-    let TouchableElement = Platform.OS === 'android' ? TouchableElement = TouchableNativeFeedback : TouchableElement = TouchableHighlight
+    const { list, openList, navigator, addItem, toggleCompleted } = this.props
 
-    console.log(list, index, openList)
-    console.log(list.name)
+    const navigatorProps = {
+      component: ViewList,
+      title: list.name,
+      passProps: {
+        list: list,
+        addItem: addItem,
+        toggleCompleted: toggleCompleted
+      }
+    }
 
-    const coloredButtonProps = {
+    const buttonProps = {
       backgroundColor: MKColor.BlueGrey,
       rippleLayerColor: MKColor.Lime,
-      onPress: () => console.log('button clicked')
+      onPress: () => openList(navigatorProps)
     }
 
-    const buttonTextProps = {
-      pointerEvents: 'none'
-    }
-
-    let countLabel = list.items.length !== 1 ? 'items' : 'item'
+    const countLabel = list.items.length !== 1 ? 'items' : 'item'
 
     return (
       <View>
-        <MKButton {...coloredButtonProps} style={styles.button}>
+        <MKButton {...buttonProps} style={styles.button}>
           <Text pointerEvents="none" style={styles.listTitle}>
             {list.name}
           </Text>

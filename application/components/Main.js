@@ -28,8 +28,8 @@ export default class Main extends Component {
     console.log('text changed')
   }
 
-  openList(index) {
-    console.log(this.state.lists[index].name)
+  openList(props) {
+    this.props.navigator.push(props)
   }
 
   componentWillMount() {
@@ -40,11 +40,14 @@ export default class Main extends Component {
 
   render() {
     const dataSource = this.dataSource.cloneWithRows(this.state.lists)
+
+    console.log('NameList', dataSource)
+
     return (
       <ListView
         dataSource={dataSource}
-        renderRow={(rowData, index) =>
-          <ListName key={index} list={rowData} index={index} openList={this.openList} />
+        renderRow={list =>
+          <ListName list={list} openList={this.openList} navigator={this.props.navigator}/>
         }
         style={styles.listView} />
     )
