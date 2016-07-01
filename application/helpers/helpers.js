@@ -1,15 +1,12 @@
 const helpers = {
   generateLists(listNames) {
     lists = []
-    listNames.map((name, index) => {
+    listNames.map((object, index) => {
       lists.push({
         id: index,
-        name: name,
+        name: object.listName,
+        color: object.listColor,
         items: [
-          {
-            name: 'zeroth',
-            completed: false,
-          },
           {
             name: 'first',
             completed: false,
@@ -20,10 +17,6 @@ const helpers = {
           },
           {
             name: 'third',
-            completed: false
-          },
-          {
-            name: 'FUCK',
             completed: false
           }
         ],

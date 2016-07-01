@@ -2,26 +2,20 @@ import { StyleSheet } from 'react-native'
 import { MKColor } from 'react-native-material-kit'
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#488BEC'
-  },
+  // mainContainer: {
+  //   flex: 1,
+  //   padding: 30,
+  //   marginTop: 65,
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   backgroundColor: '#488BEC'
+  // },
   container: {
     flex: 1,
-    backgroundColor: '#AAAAF6'
-  },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
+    backgroundColor: '#fff'
   },
   listView: {
-    backgroundColor: MKColor.LightBlue
+    backgroundColor: '#fff'
   },
   listTitle: {
     alignSelf: 'flex-start',
@@ -31,16 +25,15 @@ const styles = StyleSheet.create({
   listCount: {
     marginTop: -17,
     alignSelf: 'flex-end',
-    color: 'white',
-    fontWeight: 'bold'
+    color: 'white'
   },
-  button: {
+  listItem: {
     paddingTop: 20,
     paddingBottom: 20,
-    paddingRight: 15,
-    paddingLeft: 15,
+    paddingRight: 25,
+    paddingLeft: 25,
     borderBottomWidth: 1,
-    borderBottomColor: MKColor.Grey
+    borderBottomColor: '#b8b8b8'
   },
   // button: {
   //   height: 45,

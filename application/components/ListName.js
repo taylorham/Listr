@@ -15,12 +15,15 @@ import ViewList from './ViewList'
 
 export default class ListName extends Component {
   render() {
-    const { list, openList, navigator, addItem, toggleCompleted } = this.props
+    const { list, listIdx, updateFromViewList, viewListDataSource, openList, navigator, addItem, toggleCompleted } = this.props
 
     const goToViewList = {
       component: ViewList,
       title: list.name,
       passProps: {
+        updateFromViewList: updateFromViewList,
+        viewListDataSource: viewListDataSource,
+        listIdx: listIdx,
         list: list,
         addItem: addItem,
         toggleCompleted: toggleCompleted
@@ -28,8 +31,8 @@ export default class ListName extends Component {
     }
 
     const buttonProps = {
-      backgroundColor: MKColor.BlueGrey,
-      rippleLayerColor: MKColor.Lime,
+      backgroundColor: list.color || '#999',
+      rippleLayerColor: MKColor.Yellow,
       onPress: () => openList(goToViewList)
     }
 
@@ -37,7 +40,7 @@ export default class ListName extends Component {
 
     return (
       <View>
-        <MKButton {...buttonProps} style={styles.button}>
+        <MKButton {...buttonProps} style={styles.listItem}>
           <Text pointerEvents="none" style={styles.listTitle}>
             {list.name}
           </Text>

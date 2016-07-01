@@ -7,9 +7,6 @@ import {
   TouchableHighlight,
   ActivityIndicatorIOS
 } from 'react-native'
-import {
-  MKColor
-} from 'react-native-material-kit'
 import helpers from '../helpers/helpers'
 import styles from '../styles/styles'
 import ListName from './ListName'
@@ -17,37 +14,104 @@ import ListName from './ListName'
 export default class Main extends Component {
   constructor(props) {
     super(props)
+    this.dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1.completed !== r2.completed
+    })
+    const _lists = helpers.generateLists([
+      {listName: 'Ralphs', listColor: '#e6412d'},
+      {listName: 'Farmboy', listColor: '#ea5929'},
+      {listName: "Trader Joe's", listColor: '#5b8d8a'}
+    ])
+
     this.state = {
-      lists: helpers.generateLists(['Ralphs', 'Farmboy', "Trader Joe's"])
+      lists: _lists,
+      viewListDS: _lists[0].items,
+      viewListDataSource: this.dataSource.cloneWithRows(_lists[0].items)
     }
 
     this.openList = this.openList.bind(this)
+    this.updateLists = this.updateLists.bind(this)
+    this.updateFromViewList = this.updateFromViewList.bind(this)
+    this.toggleCompleted = this.toggleCompleted.bind(this)
+  }
+
+  addListButton() {
+
+  }
+
+  addListItemButton() {
+
   }
 
   onChangeText() {
-    console.log('text changed')
+
+  }
+
+  addList() {
+
+  }
+
+  updateLists(listIdx, changer = updatedLists => updatedLists, callback = () => {}, updateListsState = false) {
+    const updatedLists = this.state.lists.slice()
+    const listUpdater = changer(updatedLists)
+
+    updateListsState
+      ? this.setState({
+          lists: listUpdater,
+          viewListDataSource: this.state.viewListDataSource.cloneWithRows(listUpdater[listIdx].items)
+        }, callback())
+      : this.setState({
+          viewListDataSource: this.state.viewListDataSource.cloneWithRows(listUpdater[listIdx].items)
+        }, callback())
+  }
+
+  updateFromViewList(listIdx, nextProps) {
+    this.setState({
+      lists: {[listIdx]: nextProps.list},
+      viewListDataSource: this.state.viewListDataSource.cloneWithRows(nextProps.list)
+    })
+  }
+
+  toggleCompleted(listIdx, itemIdx) {
+    const toggleCompletion = (updatedLists) => {
+      updatedLists[listIdx].items[itemIdx].completed = !updatedLists[listIdx].items[itemIdx].completed
+      return updatedLists
+    }
+
+    this.updateLists(listIdx, toggleCompletion, console.log('toggleCompleted'))
+  }
+
+  addListItem(listIdx, item) {
+    const addItem = (updatedLists) => {
+      updatedLists[listIdx].items.push({name: item, completed: false})
+      return updatedLists
+    }
+
+    this.updateLists(listIdx, addItem)
   }
 
   openList(props) {
-    this.props.navigator.push(props)
-  }
+    this.updateLists(props.passProps.listIdx)
 
-  componentWillMount() {
-    this.dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    })
+    this.props.navigator.push(props)
   }
 
   render() {
     const dataSource = this.dataSource.cloneWithRows(this.state.lists)
 
-    console.log('NameList', dataSource)
-
     return (
       <ListView
         dataSource={dataSource}
-        renderRow={list =>
-          <ListName list={list} openList={this.openList} navigator={this.props.navigator}/>
+        renderRow={(list, ignore, listIdx) =>
+          <ListName
+            updateLists={this.updateLists}
+            viewListDataSource={this.state.viewListDataSource}
+            reloadViewListData={this.reloadViewListData}
+            list={list}
+            listIdx={listIdx}
+            openList={this.openList}
+            navigator={this.props.navigator}
+            toggleCompleted={this.toggleCompleted} />
         }
         style={styles.listView} />
     )

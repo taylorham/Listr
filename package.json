@@ -1,5 +1,5 @@
 {
-  "name": "listr",
+  "name": "Listr",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,5 +9,8 @@
     "react": "15.1.0",
     "react-native": "0.28.0",
     "react-native-material-kit": "^0.3.2"
+  },
+  "devDependencies": {
+    "react-native-navbar": "^1.5.0"
   }
 }

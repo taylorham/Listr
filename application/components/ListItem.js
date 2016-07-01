@@ -1,29 +1,21 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text
-} from 'react-native'
+import { View, Text } from 'react-native'
 import styles from '../styles/styles'
-import {
-  MKButton,
-  MKColor,
-  Checkbox
-} from 'react-native-material-kit'
+import { MKButton, MKColor } from 'react-native-material-kit'
 
 export default class ListItem extends Component {
   render() {
-    const { item } = this.props
-    console.log("ITEM", item.name)
+    const { item, listIdx, itemIdx, toggleCompleted } = this.props
+    const buttonColor = item.completed ? MKColor.Grey : MKColor.Blue
 
     const buttonProps = {
-      backgroundColor: MKColor.Blue,
       rippleLayerColor: MKColor.Lime,
-      onPress: () => console.log('ListItem clicked')
+      onPress: () => toggleCompleted(listIdx, itemIdx)
     }
 
     return (
       <View>
-        <MKButton {...buttonProps} style={styles.button}>
+        <MKButton {...buttonProps} backgroundColor={buttonColor} style={styles.listItem}>
           <Text pointerEvents="none" style={styles.listTitle}>
             {item.name}
           </Text>
